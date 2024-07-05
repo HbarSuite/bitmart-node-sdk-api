@@ -20,8 +20,8 @@ const SubAccount = superclass => class extends superclass {
    * @param {String} subAccount - Sub-Account username
    * {@link https://developer-pro.bitmart.com/en/spot/#sub-account-to-main-account-for-main-account-signed}
    */
-  subAccountToMainAccountForMainAccount(symbol, currency, amount, side) {
-    validateRequiredParameters({ symbol, currency, amount, side })
+  subAccountToMainAccountForMainAccount(requestNo, amount, currency, subAccount) {
+    validateRequiredParameters({ requestNo, amount, currency, subAccount })
 
     return this.request(Auth.SIGNED, 'POST', '/account/sub-account/main/v1/sub-to-main', {
       requestNo: requestNo,
@@ -41,8 +41,8 @@ const SubAccount = superclass => class extends superclass {
    * @param {String} currency - Currency
    * {@link https://developer-pro.bitmart.com/en/spot/#sub-account-to-main-account-for-main-account-signed}
    */
-  subAccountToMainAccountForSubAccount(symbol, currency, amount, side) {
-    validateRequiredParameters({ symbol, currency, amount, side })
+  subAccountToMainAccountForSubAccount(requestNo, amount, currency) {
+    validateRequiredParameters({ requestNo, amount, currency })
 
     return this.request(Auth.SIGNED, 'POST', '/account/sub-account/sub/v1/sub-to-main', {
       requestNo: requestNo,
@@ -62,8 +62,8 @@ const SubAccount = superclass => class extends superclass {
  * @param {String} subAccount - Sub-Account username
  * {@link https://developer-pro.bitmart.com/en/spot/#main-account-to-sub-account-for-main-account-signed}
  */
-  mainAccountToSubAccountForMainAccount(symbol, currency, amount, side) {
-    validateRequiredParameters({ symbol, currency, amount, side })
+  mainAccountToSubAccountForMainAccount(requestNo, amount, currency) {
+    validateRequiredParameters({ requestNo, amount, currency })
 
     return this.request(Auth.SIGNED, 'POST', '/account/sub-account/main/v1/main-to-sub', {
       requestNo: requestNo,
@@ -85,8 +85,8 @@ const SubAccount = superclass => class extends superclass {
 * @param {String} toAccount - Transfer to Sub-Account username
 * {@link https://developer-pro.bitmart.com/en/spot/#sub-account-to-sub-account-for-main-account-signed}
 */
-  subAccountToSubAccountForMainAccount(symbol, currency, amount, side) {
-    validateRequiredParameters({ symbol, currency, amount, side })
+  subAccountToSubAccountForMainAccount(requestNo, amount, currency, fromAccount, toAccount) {
+    validateRequiredParameters({ requestNo, amount, currency, fromAccount, toAccount })
 
     return this.request(Auth.SIGNED, 'POST', '/account/sub-account/main/v1/sub-to-sub', {
       requestNo: requestNo,
