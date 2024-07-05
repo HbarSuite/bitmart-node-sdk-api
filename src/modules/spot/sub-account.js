@@ -62,8 +62,8 @@ const SubAccount = superclass => class extends superclass {
  * @param {String} subAccount - Sub-Account username
  * {@link https://developer-pro.bitmart.com/en/spot/#main-account-to-sub-account-for-main-account-signed}
  */
-  mainAccountToSubAccountForMainAccount(requestNo, amount, currency) {
-    validateRequiredParameters({ requestNo, amount, currency })
+  mainAccountToSubAccountForMainAccount(requestNo, amount, currency, subAccount) {
+    validateRequiredParameters({ requestNo, amount, currency, subAccount })
 
     return this.request(Auth.SIGNED, 'POST', '/account/sub-account/main/v1/main-to-sub', {
       requestNo: requestNo,
