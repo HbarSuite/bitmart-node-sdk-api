@@ -35,7 +35,14 @@ class CloudWebsocketClient {
       this.callbacks.open && this.callbacks.open(this)
 
       setInterval(() => {
-        this.wsConnection.ws.ping()
+        try {
+          this.wsConnection.ws.ping();
+        } catch(error) {
+          this.logger.error('ping failed, going to re-init connection...');
+          this.wsConnection.ws.terminate();
+          this.wsConnection.ws = null;
+          this.initConnect();
+        }
       }, 5000)
 
     })
