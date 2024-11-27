@@ -12,6 +12,9 @@ const callbacks = {
   open: (client) => {
     client.login()
 
+    // 【Private】Balance Change
+    client.send('{"op": "subscribe", "args": ["spot/user/balance:BALANCE_UPDATE"]}')
+
     // 【Private】Order Progress
     client.send('{"op": "subscribe", "args": ["spot/user/order:BTC_USDT"]}')
 
@@ -28,5 +31,5 @@ const bitmartSpotWebsocket = new BitmartSpotWebsocket(
     apiMemo: yourApiMemo
 })
 
-// disconnect after 20 seconds
-setTimeout(() => bitmartSpotWebsocket.disconnect(), 20000)
+// If it is a test, you can turn on active shutdown, disconnect after 20 seconds
+// setTimeout(() => bitmartSpotWebsocket.disconnect(), 20000)
